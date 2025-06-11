@@ -116,3 +116,38 @@ map("i", "ö", "[", opts)
 map("i", "Ö", "{", opts)
 map("i", "ä", "]", opts)
 map("i", "Ä", "}", opts)
+
+-- Markdown Toggle
+vim.keymap.set("n", "<leader>mp", "<cmd>Markview toggle<cr>", { desc = "Toggle Markdown Preview" })
+vim.keymap.set("n", "<leader>mt", "<cmd>Markview toggleAll<cr>", { desc = "Toggle All Markdown Features" })
+
+-- Erweiterte Tabellen-Keybindings in keymaps.lua
+vim.keymap.set("n", "<leader>tm", "<cmd>TableModeToggle<cr>", { desc = "󰓫 Toggle Table Mode" })
+vim.keymap.set("n", "<leader>tt", "<cmd>Tableize<cr>", { desc = "󰓫 Tableize Selection" })
+vim.keymap.set("n", "<leader>tr", "<cmd>TableModeRealign<cr>", { desc = "󰓫 Realign Table" })
+vim.keymap.set("n", "<leader>ts", "<cmd>TableSort<cr>", { desc = "󰓫 Sort Table" })
+vim.keymap.set("n", "<leader>tdd", "<cmd>TableDeleteRow<cr>", { desc = "󰓫 Delete Row" })
+vim.keymap.set("n", "<leader>tdc", "<cmd>TableDeleteColumn<cr>", { desc = "󰓫 Delete Column" })
+
+-- 📝 MARKDOWN FORMATIERUNG Keybindings
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    local map = vim.keymap.set
+    local opts = { buffer = true }
+    
+    -- Text-Formatierung
+    map("v", "<leader>mb", "c**<C-r>\"**<Esc>", vim.tbl_extend("force", opts, { desc = "Make Bold" }))
+    map("v", "<leader>mi", "c*<C-r>\"*<Esc>", vim.tbl_extend("force", opts, { desc = "Make Italic" }))
+    map("v", "<leader>ms", "c~~<C-r>\"~~<Esc>", vim.tbl_extend("force", opts, { desc = "Make Strikethrough" }))
+    map("v", "<leader>mc", "c`<C-r>\"`<Esc>", vim.tbl_extend("force", opts, { desc = "Make Code" }))
+    
+    -- Schnelle Einfügungen
+    map("n", "<leader>m1", "I# <Esc>", vim.tbl_extend("force", opts, { desc = "H1 Heading" }))
+    map("n", "<leader>m2", "I## <Esc>", vim.tbl_extend("force", opts, { desc = "H2 Heading" }))
+    map("n", "<leader>m3", "I### <Esc>", vim.tbl_extend("force", opts, { desc = "H3 Heading" }))
+    map("n", "<leader>m-", "I- <Esc>A", vim.tbl_extend("force", opts, { desc = "List Item" }))
+    map("n", "<leader>mx", "I- [ ] <Esc>A", vim.tbl_extend("force", opts, { desc = "Checkbox" }))
+    map("n", "<leader>mq", "I> <Esc>A", vim.tbl_extend("force", opts, { desc = "Quote" }))
+  end
+})

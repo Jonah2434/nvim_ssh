@@ -4,6 +4,8 @@ require("core.keymaps")
 require("core.lazy")
 require("lsp") -- LSP-Modul laden
 
+
+
 -- Theme-Switcher initialisieren
 require("theme-switcher").setup({
   default_theme = "catppuccin",
@@ -28,4 +30,5 @@ require("theme-switcher").setup({
     ["monokai-pro"] = { "monokai-pro", "monokai-pro-classic", "monokai-pro-octagon", "monokai-pro-pro", "monokai-pro-machine", "monokai-pro-ristretto", "monokai-pro-spectrum" },
   }
 })
+
 
